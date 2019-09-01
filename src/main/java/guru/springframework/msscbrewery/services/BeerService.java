@@ -7,8 +7,13 @@ import java.util.UUID;
 /**
  * Created by jt on 2019-04-20.
  */
-public interface BeerService {
+ public interface BeerService {
     BeerDto getBeerById(UUID beerId);
 
     BeerDto saveBeer(BeerDto newBeer);
+
+    void updateBeer(UUID beerId, BeerDto beerDto);
+
+    void deleteBeer(UUID beerId);
+
 }

@@ -17,6 +17,7 @@ import java.net.UnknownHostException;
 @Data
 public class ServerInfo {
     private static final String DEFAULT_PORT = "8080";
+    public static final String LOCALHOST = "localhost";
     private String hostname;
     private String ip;
     private String port;
@@ -31,10 +32,16 @@ public class ServerInfo {
         try {
             hostname = InetAddress.getLocalHost().getHostName();
         } catch (UnknownHostException e) {
-            hostname = "localhost";
+            hostname = LOCALHOST;
         }
         ip = InetAddress.getLoopbackAddress().toString();
-        port = environment.getProperty("server.port") != null ? environment.getProperty("server.port"): DEFAULT_PORT;
+        if (environment.getProperty("server.port") != null) {
+         if (!environment.getProperty("server.port").equals("-1")) {
+                port = environment.getProperty("server.port");
+                return;
+            }
+        }
+        port = DEFAULT_PORT;
     }
 
 }
