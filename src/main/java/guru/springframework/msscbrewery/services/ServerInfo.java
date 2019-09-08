@@ -44,4 +44,8 @@ public class ServerInfo {
         port = DEFAULT_PORT;
     }
 
+    public String getUrl() {
+        return "http://" + this.hostname + ":" + this.port + "/";
+    }
+
 }
